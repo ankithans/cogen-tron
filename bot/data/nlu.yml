@@ -1,0 +1,447 @@
+version: "2.0"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
+
+  - intent: goodbye
+    examples: |
+      - good afternoon
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+
+  - intent: affirm
+    examples: |
+      - yes
+      - y
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+
+  - intent: deny
+    examples: |
+      - no
+      - n
+      - never
+      - I don't think so
+      - don't like that
+      - no way
+      - not really
+
+  - intent: mood_great
+    examples: |
+      - perfect
+      - great
+      - amazing
+      - feeling like a king
+      - wonderful
+      - I am feeling very good
+      - I am great
+      - I am amazing
+      - I am going to save the world
+      - super stoked
+      - extremely good
+      - so so perfect
+      - so good
+      - so perfect
+
+  - intent: mood_unhappy
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremly sad
+      - so saad
+      - so sad
+
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - are you a human?
+      - am I talking to a bot?
+      - am I talking to a human?
+      - my name
+      - your name
+      - what's your name
+      - tell name
+
+  - intent: faq/ask_main_brands
+    examples: |
+      - WHAT ARE AB INBEV’S MAIN BRANDS?
+      - what are ABINBEV's main brands?
+      - main brands of abinbev?
+      - abinbev main brands?
+      - abinbev
+
+  - intent: faq/ask_reponsible_drinking
+    examples: |
+      - WHAT IS AB INBEV’S POSITION ON RESPONSIBLE DRINKING?
+      - responsible drinking in abinbev?
+      - restriction on drinking in abinbev?
+      - do you allow drinking
+      - breaking govt norms in drinking
+
+  - intent: faq/ask_operate
+    examples: |
+      - WHERE DOES AB INBEV OPERATE?
+      - location of operation of abinbev?
+      - where is abinbev located?
+      - geographical zones of abinbev?
+      - geographical locations of abinbev?
+      - operations
+
+  - intent: ask_job
+    examples: |
+      - job openings in abinbev?
+      - apply for the job in abinbev?
+      - WHERE CAN I APPLY FOR A JOB AT AB INBEV?
+      - job please
+      - i want a job at abinbev
+      - careers oportunities at abinbev
+      - job
+      - internship opportunity at company
+      - are you hiring interns
+      - when do you hire
+      - hire me pls
+      - Job opportunity
+      - I want to work at abinbev
+      - any work opportunity at abinbev
+      - open for work at abinbev
+      - Are there any open positions?
+
+
+  - intent: give_time
+    examples: |
+      - can you tell what time is?
+      - please give me the time?
+      - time now
+      - current time?
+      - what's the time here?
+
+  - intent: search_products
+    examples: |
+      - search about this beer
+      - tell about this product
+      - give some information about this product
+      - brief me about this product
+      - can you search a product
+      - search via name
+      - search via alchohal
+      - search via price
+      - search
+      - find me a beer
+      - find me a product
+
+  - intent: payment_status
+    examples: |
+      - Payment report
+      - tell me about the payment report
+      - payment done with the order id
+      - have I paid for the product
+      - should I pay now?
+      - when to pay for order
+      - check my payment report
+      - payment of order done
+  
+  - intent: grab_recent_orders
+    examples: |
+      - recent orders
+      - grab recent orders
+      - give me recent orders
+      - tell me about latest orders
+      - what are the recent orders
+      - past orders
+
+  - intent: collab
+    examples: |
+      - I want to collaborate with abinbev
+      - Let's expand buisiness together
+      - I am open for collaboration
+      - I want to give my services to abinbev
+      - let's do buisiness together
+      - collaborate
+      - collab
+
+  - intent: send_email
+    examples: |
+      - I want to send feedback
+      - I want to give feedback
+      - I have a problem
+      - I am having query
+      - I want to ask questions
+      - I am having some questions
+      - I have an issue
+      - I am facing an issue
+      - website failiure
+      - website is not loading
+      - quality of product is bad
+      - quality is very good
+      - staff is bad
+      - agent is badly behaving
+      - staff's behaviour is very bad
+      - staff is good
+      - report an problem
+      - report an issue
+
+  - intent: schedule_appointment
+    examples: |
+      - schedule appointment call
+      - i want to have a call
+      - customer care service
+      - call agent
+      - schdule my call
+
+  - intent: beer_offers
+    examples: |
+      - List of discount available on beers
+      - Discount on beers
+      - Offers on beers
+      - Latest Offers on beers
+
+  - intent: mail_signups
+    examples: |
+      - I am interested in abinbev products.
+      - I like abinbev products.
+      - I want to get updates of abinbev.
+      - I want updates of abinbev.
+      - I want latest trends of abinbev.
+      - I want to be in touch with abinbev.
+
+
+  - intent: warehouse_products
+    examples: |
+      - Can you tell me about the products which are available at warehouse?
+      - I want to know location of the carton of beer in warehouse?
+      - I want to deliver this product, can you tell the location of this prdouct in warehouse?
+      - I am facing difficulty in locating the product in warehouse.
+      - I got exhausted in searching the product in warehouse.
+
+
+  - intent: order_product
+    examples: |
+      - I want to place an order
+      - I want to buy a prdouct
+      - I want to do shopping
+      - I want to get a prdouct
+
+
+  - intent: track_order_shippment
+    examples: |
+      - I want to track my order
+      - I want to track my shippment
+      - Where has my order reached?
+      - Is my order ready to dispatch?
+      - What is the current status of dispatchment?
+
+  - intent: ask_budweiser
+    examples: |
+      - I want to know about budweiser
+      - Budweiser
+      - What is Budweiser
+      - Give some information about Budweiser
+  - intent: ask_corona
+    examples: |
+      - I want to know about corona
+      - Corona
+      - What is Corona
+      - Give some information about Corona
+  - intent: ask_stella_artois
+    examples: |
+      - I want to know about Stella Artois
+      - Stella Artois
+      - What is Stella Artois
+      - Give some information about Stella Artois
+  - intent: ask_aguila
+    examples: |
+      - I want to know about Aguila
+      - Aguila
+      - What is Aguila
+      - Give some information about Aguila
+  - intent: ask_becks_blue
+    examples: |
+      - I want to know about Beck's Blue
+      - Beck's Blue
+      - What is Beck's Blue
+      - Give some information about Beck's Blue
+  - intent: ask_bogota_lager
+    examples: |
+      - I want to know about Bogota Lager
+      - Bogota Lager
+      - What is Bogota Lager
+      - Give some information about Bogota Lager
+  - intent: ask_boxing_cat_contender_extra_pale_ale
+    examples: |
+      - I want to know about Boxing Cat Contender Extra Pale Ale
+      - Boxing Cat Contender Extra Pale Ale
+      - What is Boxing Cat Contender Extra Pale Ale
+      - Give some information about Boxing Cat Contender Extra Pale Ale
+  - intent: ask_brahma
+    examples: |
+      - I want to know about Brahma
+      - Brahma
+      - What is Brahma
+      - Give some information about Brahma
+  - intent: ask_bud_light
+    examples: |
+      - I want to know about Bud light
+      - Bud Light
+      - What is Bud Light
+      - Give some information about Bud Light
+  - intent: ask_cass
+    examples: |
+      - I want to know about Cass
+      - Cass
+      - What is Cass
+      - Give some information about Cass
+  - intent: ask_castle_lager
+    examples: |
+      - I want to know about Castle Lager
+      - Castle Lager
+      - What is Castle Lager
+      - Give some information about Castle Lager
+  - intent: ask_cusqueña_dorada
+    examples: |
+      - I want to know about cusqueña_dorada
+      - cusqueña_dorada
+      - What is cusqueña_dorada
+      - Give some information about cusqueña_dorada
+  - intent: ask_eagle_lager
+    examples: |
+      - I want to know about Eagle Lager
+      - Eagle Lager
+      - What is Eagle Lager
+      - Give some information about Eagle Lager
+  - intent: ask_goose
+    examples: |
+      - I want to know about Goose Island Bourbon County Brand Stout
+      - Goose Island Bourbon County Brand Stout
+      - What is Goose Island Bourbon County Brand Stout
+      - Give some information about Goose Island Bourbon County Brand Stout
+  - intent: ask_harbin
+    examples: |
+      - I want to know about Harbin
+      - Harbin
+      - What is Harbin
+      - Give some information about Harbin
+  - intent: ask_haywards
+    examples: |
+      - I want to know about Haywards 5000
+      - Haywards 5000
+      - Haywards
+      - What is Haywards
+      - Give some information about Haywards
+  - intent: ask_hero
+    examples: |
+      - I want to know about Hero
+      - Hero
+      - Hero
+      - What is Hero
+      - Give some information about Hero
+  - intent: ask_hoegaarden
+    examples: |
+      - I want to know about Hoegaarden
+      - Hoegaarden
+      - Hoegaarden
+      - What is Hoegaarden
+      - Give some information about Hoegaarden
+  - intent: ask_jupiler
+    examples: |
+      - I want to know about Jupiler
+      - jupiler
+      - What is jupiler
+      - Give some information about jupiler
+  - intent: ask_labatt_blue
+    examples: |
+      - I want to know about Labatt Blue
+      - Labatt Blue
+      - What is Labatt Blue
+      - Give some information about Labatt Blue
+  - intent: ask_leffe
+    examples: |
+      - I want to know about Leffe
+      - Leffe
+      - What is Leffe
+      - Give some information about Leffe
+  - intent: ask_micheblob
+    examples: |
+      - I want to know about Michelob ULTRA
+      - Michelob ULTRA
+      - What is Michelob ULTRA
+      - Give some information about Michelob ULTRA
+  - intent: ask_modelo
+    examples: |
+      - I want to know about Modelo Especial
+      - Modelo Especial
+      - What is Modelo Especial
+      - Give some information about Modelo Especial
+  - intent: ask_patagonia
+    examples: |
+      - I want to know about Patagonia 24.7
+      - Patagonia 24.7
+      - What is Patagonia 24.7
+      - Give some information about Patagonia 24.7
+  - intent: ask_quilmes
+    examples: |
+      - I want to know about Quilmes
+      - Quilmes
+      - What is Quilmes
+      - Give some information about Quilmes
+  - intent: ask_vida
+    examples: |
+      - I want to know about Salva Vida
+      - Salva Vida
+      - What is Salva Vida
+      - Give some information about Salva Vida
+  - intent: ask_skol
+    examples: |
+      - I want to know about Skol
+      - Skol
+      - What is Skol
+      - Give some information about Skol
+  - intent: ask_victoria
+    examples: |
+      - I want to know about Victoria
+      - Victoria
+      - What is Victoria
+      - Give some information about Victoria
+  - intent: ask_victoria
+    examples: |
+      - I want to know about Victoria
+      - Victoria
+      - What is Victoria
+      - Give some information about Victoria
+  - intent: ask_wals
+    examples: |
+      - I want to know about Wals Brut
+      - Wals Brut
+      - What is Wals Brut
+      - Give some information about Wals Brut

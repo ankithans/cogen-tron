@@ -1,0 +1,385 @@
+version: "2.0"
+
+rules:
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Say 'I am a bot' anytime the user challenges
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot
+
+  - rule: respond to FAQ's
+    steps:
+      - intent: faq
+      - action: utter_faq
+
+  - rule: activate search products
+    steps:
+      - intent: search_products
+      - action: search_form
+      - active_loop: search_form
+
+  - rule: submit search products
+    condition:
+      - active_loop: search_form
+    steps:
+      - action: search_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_search_submit
+
+  - rule: activate payment status
+    steps:
+      - intent: payment_status
+      - action: payment_form
+      - active_loop: payment_form
+
+  - rule: submit payment status
+    condition:
+      - active_loop: payment_form
+    steps:
+      - action: payment_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_payment_status
+
+  # - rule: collaboration with abinbev
+  #   steps:
+  #     - intent: collab
+  #     - action: utter_collab
+
+  # - rule: activate auth form
+  #   steps:
+  #     - intent: auth
+  #     - action: auth_form
+  #     - active_loop: auth_form
+
+  # - rule: submit auth form
+  #   condition:
+  #     - active_loop: auth_form
+  #   steps:
+  #     - action: auth_form
+  #     - active_loop: null
+  #     - slot_was_set:
+  #         - requested_slot: null
+  #     - action: action_auth
+
+  - rule: activate email form
+    steps:
+      - intent: send_email
+      - action: email_form
+      - active_loop: email_form
+
+  - rule: submit email form
+    condition:
+      - active_loop: email_form
+    steps:
+      - action: email_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_mail_submit
+
+  - rule: activate appointment form
+    steps:
+      - intent: schedule_appointment
+      - action: appointment_form
+      - active_loop: appointment_form
+
+  - rule: submit appointment form
+    condition:
+      - active_loop: appointment_form
+    steps:
+      - action: appointment_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_appointment_submit
+
+  - rule: activate recent orders form
+    steps:
+      - intent: grab_recent_orders
+      - action: recent_orders_form
+      - active_loop: recent_orders_form
+
+  - rule: submit recent orders form
+    condition:
+      - active_loop: recent_orders_form
+    steps:
+      - action: recent_orders_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_recent_orders
+
+  - rule: activate job form
+    steps:
+      - intent: ask_job
+      - action: apply_job_form
+      - active_loop: apply_job_form
+
+  - rule: submit job form
+    condition:
+      - active_loop: apply_job_form
+    steps:
+      - action: apply_job_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_job_form
+
+
+  - rule: activate supplier onboarding form
+    steps:
+      - intent: collab
+      - action: supplier_onboarding_form
+      - active_loop: supplier_onboarding_form
+
+  - rule: submit supplier onboarding form
+    condition:
+      - active_loop: supplier_onboarding_form
+    steps:
+      - action: supplier_onboarding_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_supplier_onboard
+
+
+
+
+
+
+  - rule: Ask about budweiser
+    steps:
+      - intent: ask_budweiser
+      - action: utter_ask_budweiser
+
+  - rule: Ask about corona
+    steps:
+      - intent: ask_corona
+      - action: utter_ask_corona
+
+  - rule: Ask about stella artois
+    steps:
+      - intent: ask_stella_artois
+      - action: utter_ask_stella_artois
+
+  - rule: Ask about aguila
+    steps:
+      - intent: ask_aguila
+      - action: utter_ask_aguila
+
+  - rule: Ask about Beck's Blue
+    steps:
+      - intent: ask_becks_blue
+      - action: utter_ask_becks_blue
+
+  - rule: Ask about Bogota Lager
+    steps:
+      - intent: ask_bogota_lager
+      - action: utter_ask_bogota_lager
+
+  - rule: Ask about Boxing
+    steps:
+      - intent: ask_boxing_cat_contender_extra_pale_ale
+      - action: utter_ask_boxing_cat_contender_extra_pale_ale
+
+  - rule: Ask about Brahma
+    steps:
+      - intent: ask_brahma
+      - action: utter_ask_brahma
+
+  - rule: Ask about BudLight
+    steps:
+      - intent: ask_bud_light
+      - action: utter_ask_budlight
+
+  - rule: Ask about Cass
+    steps:
+      - intent: ask_cass
+      - action: utter_ask_cass
+
+  - rule: Ask about CastleLager
+    steps:
+      - intent: ask_castle_lager
+      - action: utter_ask_castle_lager
+
+  - rule: Ask about Dorada
+    steps:
+      - intent: ask_cusqueña_dorada
+      - action: utter_ask_dorada
+
+  - rule: Ask about eagle lager
+    steps:
+      - intent: ask_eagle_lager
+      - action: utter_ask_eagle
+
+  - rule: Ask about goose
+    steps:
+      - intent: ask_goose
+      - action: utter_ask_goose
+
+  - rule: Ask about harbin
+    steps:
+      - intent: ask_harbin
+      - action: utter_ask_harbin
+
+  - rule: Ask about haywards
+    steps:
+      - intent: ask_haywards
+      - action: utter_ask_haywards
+
+  - rule: Ask about hero
+    steps:
+      - intent: ask_hero
+      - action: utter_ask_hero
+
+  - rule: Ask about hoegaarden
+    steps:
+      - intent: ask_hoegaarden
+      - action: utter_ask_hoegarden
+
+  - rule: Ask about jupiler
+    steps:
+      - intent: ask_jupiler
+      - action: utter_ask_jupiler
+
+  - rule: Ask about labbattblue
+    steps:
+      - intent: ask_labatt_blue
+      - action: utter_ask_labbat_blue
+
+  - rule: Ask about leffe
+    steps:
+      - intent: ask_leffe
+      - action: utter_ask_leffe
+
+  - rule: Ask about michelob
+    steps:
+      - intent: ask_micheblob
+      - action: utter_ask_micheblob
+
+  - rule: Ask about modelo
+    steps:
+      - intent: ask_modelo
+      - action: utter_ask_modelo
+
+  - rule: Ask about patagonia
+    steps:
+      - intent: ask_patagonia
+      - action: utter_ask_patagonia
+
+  - rule: Ask about quilmes
+    steps:
+      - intent: ask_quilmes
+      - action: utter_ask_quilmes
+
+  - rule: Ask about Salva Vida
+    steps:
+      - intent: ask_vida
+      - action: utter_ask_vida
+
+  - rule: Ask about Skol
+    steps:
+      - intent: ask_skol
+      - action: utter_ask_skol
+
+  - rule: Ask about Victoria
+    steps:
+      - intent: ask_victoria
+      - action: utter_ask_victoria
+
+  - rule: Ask about Wals
+    steps:
+      - intent: ask_wals
+      - action: utter_ask_wals
+
+  - rule: activate beer discounts
+    steps:
+      - intent: beer_offers
+      - action: utter_ask_beer_offers
+      - action: discount_form
+      - active_loop: discount_form
+
+  - rule: submit beer discounts
+    condition:
+      - active_loop: discount_form
+    steps:
+      - action: discount_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_discount_status
+
+  - rule: activate mail signups
+    steps:
+      - intent: mail_signups
+      - action: mail_signups_form
+      - active_loop: mail_signups_form
+
+  - rule: submit mail signups
+    condition:
+      - active_loop: mail_signups_form
+    steps:
+      - action: mail_signups_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_mail_signups
+
+
+  - rule: activate warehouse products
+    steps:
+      - intent: warehouse_products
+      - action: warehouse_form
+      - active_loop: warehouse_form
+
+  - rule: submit warehouse products
+    condition:
+      - active_loop: warehouse_form
+    steps:
+      - action: warehouse_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_warehouse
+
+
+  - rule: activate order products
+    steps:
+      - intent: order_product
+      - action: order_form
+      - active_loop: order_form
+
+  - rule: submit order products
+    condition:
+      - active_loop: order_form
+    steps:
+      - action: order_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_order_product
+
+
+  - rule: activate tracking order
+    steps:
+      - intent: track_order_shippment
+      - action: track_form
+      - active_loop: track_form
+
+  - rule: submit tracking order
+    condition:
+      - active_loop: track_form
+    steps:
+      - action: track_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_track
