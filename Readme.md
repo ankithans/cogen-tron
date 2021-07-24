@@ -1,20 +1,10 @@
 # IVR-Chatbot
 
-## Achievements🏆
-Team Uhtred won the Maverick 2.0 Bot-a-thon 2021 organized by AbInbev India.
-
 ## ❓ Problem Statement
 > As we all know that, lot of tedious/complex tasks are going on in companies and organizations such as procurement, finance and accounting, human resources, supply chain management and IT. These processes require huge amount manpower and effort, so we thought to devise a solution which can proactively interact with the customers and vendors 24/7 and solve their problems with minimal efforts on the company's side.
 
 ## 💡 Solution
 > IVR chatbots can be a boon for the companies to manage their work processes easily and smoothly so we developed it. Companies can use it to improve their customer's experience, to generate more sales and build a deeper rapport with customers. They allow your customers to easily interact with your brand through stimulated conversations. It is capable of providing 24h service to their customers. For a good customer experience it provides instant and accurate results to the questions asked by users.
-
-## ✨ Presentation
-- [PPT](https://www.canva.com/design/DAEd-OD4XEY/6KDX1GKeaSY6Ke1vZZpb7Q/view?utm_content=DAEd-OD4XEY&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton)
-- [Video Presentation](https://vimeo.com/547184353)
-
-
-![ppt](mockups/gifppt.gif)
 
 ## 🎯 Features
 
@@ -42,31 +32,6 @@ Team Uhtred won the Maverick 2.0 Bot-a-thon 2021 organized by AbInbev India.
 ### Integrations
 - `Multilingual Voice support` using speech to text and text to speech API's
 - `Multi Chat Channel` like sms, chat (`Telegram, Whatsapp, Slack, Facebook Messenger, Alexa, Aimybox`) and email (non IVR Examples)
-
-## 🤖 How we built it
-![Flow](mockups/flow4.png)
-
-## 🙈 Mockups
-
-### Text to Speech and Speech to Text
-![Web Chat](mockups/webchat_img.jpg)
-
-### Multilingual Support
-![Web Multiligual](mockups/multilingual.jpg)
-
-
-### Whatsapp
-![whatsapp](mockups/whatsapp_club.png)
-
-### Telegram
-![telegram](mockups/telegram_img.jpg)
-
-### Slack
-![slack](mockups/slack_img.jpg)
-
-### Alexa
-![alexa](mockups/alexa.png)
-
 
 ## 👣 steps to run the project
 ### Run rasa and rasa action server
