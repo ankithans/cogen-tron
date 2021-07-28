@@ -17,6 +17,8 @@ intents:
   - warehouse_products
   - order_product
   - track_order_shippment
+  - send_email
+  - ask_job
 
 forms:
   search_form:
@@ -189,40 +191,13 @@ actions:
   - action_supplier_onboard
   - validate_recent_orders_form
   - action_track
-  - ask_budweiser
+  - action_recommend
   - ask_order_product
-  - ask_corona
-  - ask_stella_artois
-  - ask_aguila
-  - ask_becks_blue
-  - ask_bogota_lager
-  - ask_boxing_cat_contender_extra_pale_ale
-  - ask_brahma
-  - ask_bud_light
-  - ask_cass
-  - ask_castle_lager
-  - ask_cusqueña_dorada
-  - ask_eagle_lager
-  - ask_goose
-  - ask_harbin
-  - ask_haywards
-  - ask_hero
-  - ask_hoegaarden
-  - ask_jupiler
-  - ask_labatt_blue
-  - ask_leffe
-  - ask_micheblob
-  - ask_modelo
-  - ask_patagonia
-  - ask_quilmes
-  - ask_vida
-  - ask_skol
-  - ask_victoria
-  - ask_wals
+ 
 
 responses:
   utter_greet:
-    - text: "Hi 👋\nI am ABInBev Bot. need any assistance?\n\nStart asking me about\n👉 *payment*\n👉 *appointment* with a agent\n👉 *FAQ's*\n👉 *job* opportunities\n👉 *collaborations*\n👉 give *feedback*\n👉 *search* any product\n👉 add yourself to *mailing list* etc."
+    - text: "Hi 👋\nI am Walmart Bot. need any assistance?\n\nStart asking me about\n👉 *payment*\n👉 *appointment* with a agent\n👉 *FAQ's*\n👉 *job* opportunities\n👉 *collaborations*\n👉 give *feedback*\n👉 *search* any product\n👉 add yourself to *mailing list* etc."
 
   utter_cheer_up:
     - text: "Here is something to cheer you up:"
@@ -238,19 +213,19 @@ responses:
     - text: "Bye 🥺\nsee you soon!"
 
   utter_iamabot:
-    - text: "Hi 👋\nI am ABInBev Bot. need any assistance?\n\nStart asking me about\n👉 *payment*\n👉 *appointment* with a agent\n👉 *FAQ's*\n👉 *job* opportunities\n👉 *collaborations*\n👉 give *feedback*\n👉 *search* any product\n👉 add yourself to *mailing list* etc."
+    - text: "Hi 👋\nI am Walmart Bot. need any assistance?\n\nStart asking me about\n👉 *payment*\n👉 *appointment* with a agent\n👉 *FAQ's*\n👉 *job* opportunities\n👉 *collaborations*\n👉 give *feedback*\n👉 *search* any product\n👉 add yourself to *mailing list* etc."
 
-  utter_faq/ask_main_brands:
-    - text: "Our diverse portfolio of well over *400 beer brands* includes global brands like\nBudweiser®, Corona® and Stella Artois®;\n\n*multi-country brands* such as\nBeck’s®, Castle®, Castle Lite®, Leffe® and Hoegaarden®;\n\nand *local champions* such as\nAguila®, Antarctica®, Bud Light®, Brahma®, Cass®, Chernigivske®, Cristal®, Harbin®, Jupiler®, Klinskoye®, Michelob Ultra®, Modelo Especial®, Quilmes®, Victoria®, Sedrin®, Sibirskaya Korona®, and Skol®."
+  utter_faq/cancel_edit_order:
+    - text: "You can cancel your order while it's still in a Processing status. Once the status changes to Shipped, the order can't be canceled. Once a cancellation request is submitted, it can't be undone.\n If the order or item is too far along to cancel, most items can be returned. Learn more about our return policy or start a return in your account once you receive the item.\nUse these steps to see if the item or order is still in a Processing status and request a cancellation.\n1. In the upper-right corner of any Walmart.com page, click the Account icon.\n2. Select Track Order.\n3. Enter the email address used to place the order and the order number shown on your order confirmation email.\n4. Click Cancel next to the item you wish to attempt to cancel.\nIf you do not see a Cancel button, it could be because your order is too far along to cancel. If your order is being fulfilled by a Marketplace Seller, you can select Cancel if it's available or you can reach out to the seller using the Contact Seller button."
 
-  utter_faq/ask_reponsible_drinking:
-    - text: "As the leading global brewer, we brew our beers with quality and care, to be enjoyed responsibly by consumers of *legal drinking age*. As part of our Dream to bring people together for a better world, we are also deeply committed to marketing and *promoting our beers in a responsible way*."
+  utter_faq/order_location:
+    - text: "You can track your order from your shipping confirmation email or by visiting Walmart.com. We send an email with a tracking link as soon as your package ships, which you can use any time to check its progress.\nTo track order on Walmart app:\n1. Go to Walmart.com\n2. Select the avatar icon in the upper-right corner\n3. Select Track Orders\n4. If you're not logged in or are tracking a guest order, enter the email address you used to submit your order and your order number. If you are already logged in to your Walmart.com account, this link routes you to your Purchase History page, where you can scroll to the order to track it."
 
-  utter_faq/ask_operate:
-    - text: "We have operations in more than *50 countries worldwide* and a presence in virtually every major beer market. We are organized in *9 geographical Zones* to maximize growth opportunities.\nWe benefit from a geographically diversified global platform. The stability and strength of developed markets balances the growth opportunities of developing markets. We have a strong presence in key emerging regions with strong growth prospects such as Asia, Central and South America, and Africa."
+  utter_faq/get_refund:
+    - text: "If you return your item to a Walmart store or by mail, you should see the money appear on your original payment method in up to 10 business days (depending on your financial institution).\nIf you return an item you purchased with a Walmart Gift Card or eGift Card, you should see the refund appear within 3 hours on the gift card you used. Be sure to hang on to your gift card until you are sure you want to keep everything you bought with it.\nIf you bought an item on Walmart.com that you paid for in-store, only a Walmart store can provide your refund, but don't worry! You don't have to go back to the exact store where you paid for your order. Go to any customer service counter to collect your refund or request a check by mail.\nIf we have to cancel an order or item, we'll email you right away to ask how you prefer to get your money back. Learn more about canceled orders and items or contact Customer Care using the button below if you still have questions."
 
   # utter_faq/ask_job:
-  #   - text: "Thank you for showing interest in abinbev. Please visit the careers section https://www.ab-inbev.com/careers/ of our website for further information on job opportunities."
+  #   - text: "Thank you for showing interest in Walmart. Please visit the careers section https://www.ab-inbev.com/careers/ of our website for further information on job opportunities."
 
   utter_ask_search_prod_choice:
     - text: "Enter your choice: \n1 - search via name \n2 - search via price \n3 - search via alchohal content"
@@ -262,7 +237,7 @@ responses:
     - text: "Enter the order ID of the product"
 
   # utter_collab:
-  #   - text: "We are always open for collaborations, you can contact us here https://collab@abinbev.com"
+  #   - text: "We are always open for collaborations, you can contact us here https://collab@Walmart.com"
 
   utter_ask_phone_number:
     - text: "Please enter your phone number. An OTP will be sent to your phone to verfiy you!"
@@ -291,11 +266,11 @@ responses:
   utter_ask_prefered_email:
     - text: "Enter your preffered email address on which you would like to recieve the invitation. We will add the invitation to your calender."
 
-  utter_ask_beer_offers:
+  utter_ask_offers:
     - text: "The list of id's of beers are mentioned below alongwith name.\n\n1 - Budweiser\n2 - Corona Extra\n3 - Stella Artois\n4 - Aguila\n5 - Becks Blue\n6 - Bogota Lager\n7 - Contender\n8 - Brahma Chopp\n9 - Bud Light\n10 - Cass Fresh\n11 - Castle Lager\n12 - Cusquena Dorada\n13 - Eagle Lager\n14 - Goose Island Bourbon County Brand Stout\n15 - Harbin\n16 - Haywards 5000\n17 - Hero\n18 - Hoegarden\n19 - Jupiler\n20 - Labatt Blue\n21 - Leffe\n22 - Michelob ULTRA\n23 - Modelo Especial\n24 - Patagonia 24.7\n25 - Quilmes\n26 - Salva Vida\n27 - Skol\n28 - Victoria\n29 - Wals Brut\n30 - Heineken\n\nType the Id of your preferred beer to know about the discount offers on that beer."
 
   utter_ask_name_of_customer:
-    - text: "Ok we want to add your details to our mail signups list so that you get latest updates about ABInbev without any problem.\nPlease enter your name."
+    - text: "Ok we want to add your details to our mail signups list so that you get latest updates about Walmart without any problem.\nPlease enter your name."
 
   utter_ask_email_of_customer:
     - text: "Please enter your email"
@@ -351,121 +326,6 @@ responses:
   utter_ask_order_id23:
     - text: "Please type your order ID."
 
-  utter_ask_budweiser:
-    - text: "The yeast cells used to brew every bottle of our American-style lager are directly descended from the original culture used by founder Adolphus Busch.For more information, go to  https://www.budweiser.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Budweiser_Card.png"
-
-  utter_ask_corona:
-    - text: "Corona is a worldwide trademark; it is a Mexican beer among the 100 most valuable global brands, according to Brandz™ Top 100 Global Brands ranking. *Disclaimer: We do not own this delicious beer in the U.S.For more information, go to  https://www.corona.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Corona_Card.png"
-
-  utter_ask_stella_artois:
-    - text: "Originally brewed as a Christmas gift to the people of Leuven, Belgium, Stella Artois is to be served in a chalice following an exacting 9-step Pouring Ritual.For more information, go to https://www.stellaartois.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Stella%20Artois_Card.png"
-
-  utter_ask_aguila:
-    - text: "Colombia packed in a beer...that's Aguila; a cheerful, positive lager beer with a smooth and mild body.For more information go to, https://www.cervezaaguila.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Aquila_Card.png"
-
-  utter_ask_becks_blue:
-    - text: "Beck's is brewed in accordance with the Reinheitsgebot — the German Beer Purity Law of 1516, which requires a beer to be made only from hops, malt, barley and water.For more information, go to https://www.becks.de"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/Resized-Brand-Expander/Becks.jpg"
-
-  utter_ask_bogota_lager:
-    - text: "Macondo Coffee Stout won a silver European Beer Star award. Bacatá Blanca won a bronze European Beer Star award.For more information, go to https://www.bogotabeercompany.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Bogota_Card.png"
-
-  utter_ask_boxing_cat_contender_extra_pale_ale:
-    - text: "This lightly hopped golden ale with a fruity character earned a Bronze award at the Brussels Beer Challenge.For more information, go to https://www.boxingcatbrewery.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Contender_Card.png"
-
-  utter_ask_brahma:
-    - text: "Brahma is a major supporter of football in Brazil, sponsoring dozens of teams and building numerous playing fields across the country.For more information,go to https://www.brahma.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/Resized-Brand-Expander/Brahma.jpg"
-
-  utter_ask_budlight:
-    - text: "Bud Light was introduced in the U.S. in 1982. Its superior drinkability and refreshing flavor have made it the world's best-selling American light beer lager.For more information,go to https://www.budlight.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Bud%20Light_Card.png"
-
-  utter_ask_cass:
-    - text: "Cass is the #1 beer brand in South Korea and is brewed using a 100% non-pasteurized treatment.For more information,go to https://www.cass.co.kr"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Cass_Card.png"
-
-  utter_ask_castle_lager:
-    - text: "Since 1895, South Africa's home grown beer has been known for its somewhat dry, somewhat bitter, but never sweet taste.For more information, go to https://www.castlelager.co.za"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Castle_Card.png"
-
-  utter_ask_dorada:
-    - text: "Our premium Peruvian beer gets its flavor and deep golden color from a combination of 100% barley malt with the finest aromatic hops and is best served with moderately spiced dishes.For more information,go to https://www.cusquena.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Cusquena_Card.png"
-
-  utter_ask_eagle:
-    - text: "Eagle Lager is locally sourced in Uganda, helping to create a secure income stream for more than 45,000 small farmers."
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Eagle_Card.png"
-
-  utter_ask_goose:
-    - text: "Goose Island pioneered bourbon barrel-aging beer. After aging inside second-use barrels for upwards of eight months, this highly sought-after beer takes on remarkable notes of charred oak, chocolate, vanilla, caramel and smoke.For more information,go to https://www.gooseisland.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Bourbon%20County_Card.png"
-
-  utter_ask_harbin:
-    - text: "Harbin beer, born in 1900, is China's earliest beer. More than 1,400 standard procedures and 240 quality assurance processes, set up by both Chinese and overseas brewmasters over the past 100 years, have ensured the uniqueness and quality of Harbin beer.For more information, go to https://www.harbin-beer.com.cn"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Harbin_Card.png"
-
-  utter_ask_haywards:
-    - text: "Haywards 5000 is India's first national beer brand. Today its full-bodied high-malt flavor is enjoyed by millions."
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Haywards5000_Card.png"
-
-  utter_ask_hero:
-    - text: "The label of our flagship Nigerian beer features a rising sun, intended to inspire people with the promise that anyone can be a hero and triumph over adversity."
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Hero_Card.png"
-
-  utter_ask_hoegarden:
-    - text: "Hoegaarden White was initially brewed by monks 600 years ago and contains coriander and orange peel imported from sunny Curaçao to achieve a harmonious taste profile.For more information, go to https://www.hoegaarden.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Hoegaarden_Card.png"
-
-  utter_ask_jupiler:
-    - text: "Jupiler is the best selling beer in Belgium and a quintessential favorite at sporting, music and social events.For more information, go to https://www.jupiler.be"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Jupiler_Card.png"
-
-  utter_ask_labbat_blue:
-    - text: "Labatt Blue, a well balanced, full flavoured lager, with a fruity character, a slightly sweet after-taste, and a very smooth finish.For more information,go to https://www.labattusa.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/LabattBlue_Card.png"
-
-  utter_ask_leffe:
-    - text: "Leffe is the original abbey beer with the longest heritage in our portfolio, dating back nearly eight centuries.For more information, go to https://www.leffe.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Leffe_Card.png"
-
-  utter_ask_micheblob:
-    - text: "Michelob ULTRA, one of our fastest growing brands, has fewer calories and lower alcohol content, and is associated with a more active, social lifestyle.For more information, go to https://www.michelobultra.com"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Michelob%20Ultra_Card.png"
-
-  utter_ask_modelo:
-    - text: "A refreshing pilsner, Modelo Especial is one of the most popular Mexican beers in the world, and was the first beer produced by Grupo Modelo in 1925. *Disclaimer: We do not own this delicious beer in the U.S."
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Modelo%20Especial_Card.png"
-
-  utter_ask_patagonia:
-    - text: "This Session IPA with honey and elderberry features an intense hop aroma, with a medium to high bitterness and a combination of herbal and citrus notes.For more information, go to https://www.cervezapatagonia.com.ar"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Patagonia247_Card.png"
-
-  utter_ask_quilmes:
-    - text: "This original Argentinian lager is considered a national symbol. It's a beer crafted with 100% national and natural ingredients.For more information, go to https://www.quilmes.com.ar"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Quilmes_Card.png"
-
-  utter_ask_vida:
-    - text: "Salva Vida is an American-type lager with a crisp, refreshing and balanced taste — not too sweet, not too bitter — that can be enjoyed by everyone.For more information,go to https://www.cerveceriahondurena.com/nuestras-marcas/cervezas/salva-vida"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/SalvaVida_Card.png"
-
-  utter_ask_skol:
-    - text: "In 2018 BrandZ™ Brazil named Skol the most valuable brand in the nation for the sixth consecutive year, with a value of USD$8.2 billion. For more information, go to https://www.skol.com.br"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Skol_Card.png"
-
-  utter_ask_victoria:
-    - text: "Victoria was first produced in 1865, making it Mexico's oldest beer brand (and still one of its most popular!).For more information, go to https://www.cervezavictoria.com.mx"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/Victoria_Card3.png"
-
-  utter_ask_wals:
-    - text: "Our Belgian-style ale, Wäls Brut, earned a prestigious Gold award at the 2018 World Beer Cup.For more information, go to https://www.wals.com.br/cervejas/biere-brut/brut"
-      image: "https://www.ab-inbev.com/content/dam/abinbev/our-brands/our-beer/desktop/beer-cards/WalsBrut_Card.png"
 
 session_config:
   session_expiration_time: 60

@@ -5,6 +5,9 @@
 # https://rasa.com/docs/rasa/custom-actions
 from __future__ import print_function
 
+import sendgrid
+from sendgrid.helpers.mail import *
+
 
 # This is a simple example for a custom action which utters "Hello World!"
 import datetime as dt
@@ -43,8 +46,10 @@ from geopy.geocoders import Nominatim
 import math
 import pandas as pd
 from faker import Faker
+import requests
 
 
+send_grid_key = "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"
 
 ottp = random.randint(1000, 9999)
 SCOPES = ['https://www.googleapis.com/auth/calendar']
@@ -78,149 +83,120 @@ class ActionSearch(Action):
 
         products = [
             {
-                "name": "Budweiser",
+                "name": "Meat",
                 "price": 400,
-                "alchohal_content": 12
             },
             {
-                "name": "Corona Extra",
+                "name": "Oily fish",
                 "price": 500,
-                "alchohal_content": 13
             },
             {
-                "name": "Stella Artois",
+                "name": "Luncheon Meat",
                 "price": 1225,
-                "alchohal_content": 11
             },
             {
                 "name": "Aguila",
                 "price": 1250,
-                "alchohal_content": 10
             },
             {
-                "name": "Becks Blue",
+                "name": "Pasta",
                 "price": 525,
-                "alchohal_content": 15
             },
             {
                 "name": "Bogota Lager",
                 "price": 700,
-                "alchohal_content": 16
             },
             {
-                "name": "Contender",
+                "name": "Rice",
                 "price": 625,
-                "alchohal_content": 19
             },
             {
                 "name": "Brahma Chopp",
                 "price": 1100,
-                "alchohal_content": 20
             },
             {
                 "name": "Bud Light",
                 "price": 900,
-                "alchohal_content": 13
             },
             {
                 "name": "Cass Fresh",
                 "price": 825,
-                "alchohal_content": 21
             },
             {
                 "name": "Castle Lager",
                 "price": 1000,
-                "alchohal_content": 14
             },
             {
                 "name": "Cusquena Dorada",
                 "price": 2000,
-                "alchohal_content": 25
             },
             {
                 "name": "Eagle Lager",
                 "price": 785,
-                "alchohal_content": 24
             },
             {
                 "name": "Goose Island Bourbon County Brand Stout",
                 "price": 2125,
-                "alchohal_content": 27
             },
             {
                 "name": "Harbin",
                 "price": 1230,
-                "alchohal_content": 23
             },
             {
                 "name": "Haywards 5000",
                 "price": 500,
-                "alchohal_content": 20
             },
             {
                 "name": "Hero",
                 "price": 725,
-                "alchohal_content": 29
             },
             {
                 "name": "Hoegarden",
                 "price": 890,
-                "alchohal_content": 30
             },
             {
                 "name": "Jupiler",
                 "price": 925,
-                "alchohal_content": 17
             },
             {
                 "name": "Labatt Blue",
                 "price": 1175,
-                "alchohal_content": 16
             },
             {
                 "name": "Leffe",
                 "price": 910,
-                "alchohal_content": 32
             },
             {
                 "name": "Micheblob ULTRA",
                 "price": 650,
-                "alchohal_content": 23
             },
             {
                 "name": "Modelo Especial",
                 "price": 699,
-                "alchohal_content": 13
             },
             {
                 "name": "Patagonia 24.7",
                 "price": 1500,
-                "alchohal_content": 29
             },
             {
                 "name": "Quilmes",
                 "price": 1700,
-                "alchohal_content": 20
             },
             {
                 "name": "Salva Vida",
                 "price": 1800,
-                "alchohal_content": 34
             },
             {
                 "name": "Skol",
                 "price": 2000,
-                "alchohal_content": 38
             },
             {
                 "name": "Victoria",
                 "price": 2200,
-                "alchohal_content": 33
             },
             {
                 "name": "Wals Brut",
                 "price": 2500,
-                "alchohal_content": 39
             }
 
         ]
@@ -241,7 +217,7 @@ class ActionSearch(Action):
                 if p["name"] == nearest[0]:
                     dispatcher.utter_message(text="Here is your search result")
                     dispatcher.utter_message(
-                        text=f"Name: {p['name']}\nPrice:  ₹{p['price']}\nAlcohal Content: {p['alchohal_content']}%")
+                        text=f"Name: {p['name']}\nPrice:  ₹{p['price']}\n")
                     break
 
         elif choice == "2":
@@ -253,19 +229,7 @@ class ActionSearch(Action):
                 if p["price"] == nearest:
                     dispatcher.utter_message(text="Here is your search result")
                     dispatcher.utter_message(
-                        text=f"Name: {p['name']}\nPrice:  ₹{p['price']}\nAlcohal Content: {p['alchohal_content']}%")
-                    break
-
-        elif choice == "3":
-            pr = []
-            for p in products:
-                pr.append(p["alchohal_content"])
-            nearest = closest(pr, int(value))
-            for p in products:
-                if p["alchohal_content"] == nearest:
-                    dispatcher.utter_message(text="Here is your search result")
-                    dispatcher.utter_message(
-                        text=f"Name: {p['name']}\nPrice:  ₹{p['price']}\nAlcohal Content: {p['alchohal_content']}%")
+                        text=f"Name: {p['name']}\nPrice:  ₹{p['price']}\n")
                     break
 
         else:
@@ -364,15 +328,14 @@ class ValidatePaymentForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
 
-        print("yoyoyoyoyoyoyoyoy")
-        account_sid = "AC083274c578353fe67a0eaad634de69d8"
-        auth_token = "ac6295d7b948c3696636a8b4f51a937d"
+        account_sid = "ACc91ac53695afe88ee413eff35bac66ca"
+        auth_token = "ff7ff68deb9bcac3a37e6146c27d7b9a"
         client = Client(account_sid, auth_token)
 
         message = client.messages \
             .create(
-                body='Your OTP for ABInBev Bot is ' + str(ottp),
-                from_='+16123240764',
+                body='Your OTP for Walmart Bot is ' + str(ottp),
+                from_='+18482223167',
                 to='+91'+slot_value
             )
 
@@ -404,43 +367,52 @@ class ActionEmailSubmit(Action):
         self,
         dispatcher,
         tracker: Tracker,
-        domain: "DomainDict",
+        domain: DomainDict,
     ) -> List[Dict[Text, Any]]:
 
-        email = "feedback@abinbev.com"
+        email = "feedback@Walmart.com"
         dep = tracker.get_slot("department")
         if dep == "1":
-            email = "productions@abinbev.com"
+            email = "productions@Walmart.com"
         elif dep == "2":
-            email = "rnd@abinbev.com"
+            email = "rnd@Walmart.com"
         elif dep == "3":
-            email = "purchasing@abinbev.com"
+            email = "purchasing@Walmart.com"
         elif dep == "4":
-            email = "marketing@abinbev.com"
+            email = "marketing@Walmart.com"
         elif dep == "5":
-            email = "hrm@abinbev.com"
+            email = "hrm@Walmart.com"
         elif dep == "6":
-            email = "accountsfinance@abinbev.com"
+            email = "accountsfinance@Walmart.com"
         elif dep == "7":
-            email = "complaints@abinbev.com"
+            email = "complaints@Walmart.com"
 
-        SendEmail(
-            "ankithans1947@gmail.com",
-            tracker.get_slot("subject"),
-            tracker.get_slot("message")
-        )
+        # SendEmail(
+        #     "ankithans1947@gmail.com",
+        #     tracker.get_slot("subject"),
+        #     tracker.get_slot("message")
+        # )
         SendEmail(
             "pandeyaryamaan@gmail.com",
             tracker.get_slot("subject"),
             tracker.get_slot("message")
         )
+
+        # sg = sendgrid.SendGridAPIClient(api_key=send_grid_key)
+        # from_email = Email("ah7549@srmist.edu.in")
+        # to_email = To("pandeyaryamaan@gmail.com")
+        # subject = "Sending with SendGrid is Fun"
+        # content = Content("text/plain", "and easy to do anywhere, even with Python")
+        # mail = Mail(from_email, to_email, subject, content)
+        # response = sg.client.mail.send.post(request_body=mail.get())
+
         dispatcher.utter_message(
             "Thanks for providing the feedback. We have sent your queries and feedbacks to {}".format(email))
         return [AllSlotsReset()]
 
 
 def SendEmail(toaddr, subject, message):
-    fromaddr = "aryamaan231101@gmail.com"
+    fromaddr = "aryamaan26012000@gmail.com"
     msg = MIMEMultipart()
 
     msg['From'] = fromaddr
@@ -453,7 +425,7 @@ def SendEmail(toaddr, subject, message):
     s.starttls()
 
     try:
-        s.login(fromaddr, "7752912609")
+        s.login(fromaddr, "Vandana@123")
         text = msg.as_string()
         s.sendmail(fromaddr, toaddr, text)
     except:
@@ -582,18 +554,18 @@ class Actionbeerdiscounts(Action):
         beers = [
             {
                 "id": "1",
-                "name": "Budweiser",
-                "discount": "22.2% off on Budweiser"
+                "name": "Meat",
+                "discount": "22.2% off on Meat"
             },
             {
                 "id": "2",
-                "name": "Corona Extra",
-                "discount": "23.567% off on Corona Extra"
+                "name": "Oily fish",
+                "discount": "23.567% off on Oily fish"
             },
             {
                 "id": "3",
-                "name": "Stella Artois",
-                "discount": "29% off on Stella Artois"
+                "name": "Luncheon Meat",
+                "discount": "29% off on Luncheon Meat"
             },
             {
                 "id": "4",
@@ -607,8 +579,8 @@ class Actionbeerdiscounts(Action):
             },
             {
                 "id": "6",
-                "name": "Bogota Lager",
-                "discount": "24% off on Bogota Lager"
+                "name": "Pasta",
+                "discount": "24% off on Pasta"
             },
             {
                 "id": "7",
@@ -617,8 +589,8 @@ class Actionbeerdiscounts(Action):
             },
             {
                 "id": "8",
-                "name": "Brahma Chopp",
-                "discount": "21% off on Brahma Chopp"
+                "name": "Rice",
+                "discount": "21% off on Rice"
             },
             {
                 "id": "9",
@@ -637,7 +609,7 @@ class Actionbeerdiscounts(Action):
             },
             {
                 "id": "12",
-                "name": "Cusquena Dorada",
+                "name": "Breakfast cereal",
                 "discount": "10.5% off on Cusquena Dorada"
             },
             {
@@ -647,8 +619,8 @@ class Actionbeerdiscounts(Action):
             },
             {
                 "id": "14",
-                "name": "Goose Island Bourbon County Brand Stout",
-                "discount": "12.38% off on Goose Island Bourbon County Brand Stout"
+                "name": "Garlic",
+                "discount": "12.38% off on Garlic"
             },
             {
                 "id": "15",
@@ -657,8 +629,8 @@ class Actionbeerdiscounts(Action):
             },
             {
                 "id": "16",
-                "name": "Haywards 5000",
-                "discount": "9.5% off on Haywards 5000"
+                "name": "Pulses",
+                "discount": "9.5% off on Pulses"
             },
             {
                 "id": "17",
@@ -687,13 +659,13 @@ class Actionbeerdiscounts(Action):
             },
             {
                 "id": "22",
-                "name": "Michelob ULTRA",
-                "discount": "12% off on Michleblob ULTRA"
+                "name": "Honey",
+                "discount": "12% off on Honey"
             },
             {
                 "id": "23",
-                "name": "Modelo Especial",
-                "discount": "15% off on Modelo Especial"
+                "name": "Butter",
+                "discount": "15% off on Butter"
             },
             {
                 "id": "24",
@@ -722,13 +694,13 @@ class Actionbeerdiscounts(Action):
             },
             {
                 "id": "29",
-                "name": "Wals Brut",
-                "discount": "32.2% off on Wals Brut"
+                "name": "Vinegar",
+                "discount": "32.2% off on Vinegar"
             },
             {
                 "id": "30",
-                "name": "Heineken",
-                "discount": "11.1% off on Heineken"
+                "name": "Sugar",
+                "discount": "11.1% off on Sugar"
             }
 
         ]
@@ -782,123 +754,123 @@ class ActionWarehouse(Action):
 
         warehousedb = [
             {
-                "id": "1Abinbev",
-                "location": "Carton of Budweiser is present in drawer 2 of rack 5."
+                "id": "1Corona",
+                "location": "Carton of Corona is present in drawer 2 of rack 5."
             },
             {
-                "id": "2Abinbev",
-                "location": "Carton of Corona is present in drawer 1 of rack 7."
+                "id": "2macbook",
+                "location": "Carton of Macbook is present in drawer 1 of rack 7."
             },
             {
-                "id": "3Abinbev",
-                "location": "Carton of Stella Artois is present in drawer 5 of rack 8."
+                "id": "3iphone",
+                "location": "Carton of iphone is present in drawer 5 of rack 8."
             },
             {
-                "id": "4Abinbev",
-                "location": "Carton of Aguila is present in drawer 11 of rack 42."
+                "id": "4tshirts",
+                "location": "Carton of Allen Solly t-shirt is present in drawer 11 of rack 42."
             },
             {
-                "id": "5Abinbev",
-                "location": "Carton of Becks Blue is present in drawer 12 of rack 25."
+                "id": "5calpol",
+                "location": "Carton of Calpol is present in drawer 12 of rack 25."
             },
             {
-                "id": "6Abinbev",
-                "location": "Carton of Bogota Lager is present in drawer 13 of rack 23."
+                "id": "6maceye",
+                "location": "Carton of MAC eyeliners is present in drawer 13 of rack 23."
             },
             {
-                "id": "7Abinbev",
+                "id": "7Walmart",
                 "location": "Carton of Contender is present in drawer 17 of rack 85.",
             },
             {
-                "id": "8Abinbev",
+                "id": "8Walmart",
                 "location": "Carton of Brahma Chopp is present in drawer 18 of rack 57."
             },
             {
-                "id": "9Abinbev",
+                "id": "9Walmart",
                 "location": "Carton of Bud Light is present in drawer 14 of rack 55."
             },
             {
-                "id": "10Abinbev",
+                "id": "10Walmart",
                 "location": "Carton of Cass Fresh is present in drawer 19 of rack 65."
             },
             {
-                "id": "11Abinbev",
+                "id": "11Walmart",
                 "location": "Carton of Castle Lager is present in drawer 22 of rack 73."
             },
             {
-                "id": "12Abinbev",
+                "id": "12Walmart",
                 "location": "Carton of Cusquena Dorada is present in drawer 25 of rack 79."
             },
             {
-                "id": "13Abinbev",
+                "id": "13Walmart",
                 "location": "Carton of Eagle Lager is present in drawer 7 of rack 92."
             },
             {
-                "id": "14Abinbev",
+                "id": "14Walmart",
                 "location": "Carton of Goose Island Bourbon County Brand Stout is present in drawer 19 of rack 67."
             },
             {
-                "id": "15Abinbev",
+                "id": "15Walmart",
                 "location": "Carton of Harbin is present in drawer 13 of rack 53."
             },
             {
-                "id": "16Abinbev",
+                "id": "16Walmart",
                 "location": "Carton of Haywards 5000 is present in drawer 8 of rack 99."
             },
             {
-                "id": "17Abinbev",
+                "id": "17Walmart",
                 "location": "Carton of Hero is present in drawer 4 of rack 43."
             },
             {
-                "id": "18Abinbev",
+                "id": "18Walmart",
                 "location": "Carton of Hoegarden is present in drawer 9 of rack 22."
             },
             {
-                "id": "19Abinbev",
+                "id": "19Walmart",
                 "location": "Carton of Jupiler is present in drawer 7 of rack 61.",
             },
             {
-                "id": "20Abinbev",
+                "id": "20Walmart",
                 "location": "Carton of Labatt Blue is present in drawer 6 of rack 52."
             },
             {
-                "id": "21Abinbev",
+                "id": "21Walmart",
                 "location": "Carton of Leffe is present in drawer 7 of rack 32."
             },
             {
-                "id": "22Abinbev",
+                "id": "22Walmart",
                 "location": "Carton of Michleblob ULTRA is present in drawer 6 of rack 11."
             },
             {
-                "id": "23Abinbev",
+                "id": "23Walmart",
                 "location": "Carton of Modelo Especial is present in drawer 7 of rack 41."
             },
             {
-                "id": "24Abinbev",
+                "id": "24Walmart",
                 "location": "Carton of Patagonia is present in drawer 9 of rack 17. "
             },
             {
-                "id": "25Abinbev",
+                "id": "25Walmart",
                 "location": "Carton of Quilmes is present in drawer 2 of rack 5."
             },
             {
-                "id": "26Abinbev",
+                "id": "26Walmart",
                 "location": "Carton of Salva Vida is present in drawer 5 of rack 40."
             },
             {
-                "id": "27Abinbev",
+                "id": "27Walmart",
                 "location": "Carton of Skol is present in drawer 7 of rack 88."
             },
             {
-                "id": "28Abinbev",
+                "id": "28Walmart",
                 "location": "Carton of Victoria is present in drawer 13 of rack 44."
             },
             {
-                "id": "29Abinbev",
+                "id": "29Walmart",
                 "location": "Carton of Wals Brut is present in drawer 11 of rack 33."
             },
             {
-                "id": "30Abinbev",
+                "id": "30Walmart",
                 "location": "Carton of Heineken is present in drawer 8 of rack 11."
             }
 
@@ -1124,7 +1096,7 @@ class ActionOrder(Action):
                 customerAddress = apicontractsv1.customerAddressType()
                 customerAddress.firstName = "Ankit"
                 customerAddress.lastName = "Hans"
-                customerAddress.company = "ABInbev"
+                customerAddress.company = "Walmart"
                 customerAddress.address = "14 Main Street"
                 customerAddress.city = "Kaithal"
                 customerAddress.state = "HR"
@@ -1208,6 +1180,8 @@ class ActionOrder(Action):
                                 response.messages.message[0]['text'].text)
                 else:
                     print('Null Response.')
+
+                dispatcher.utter_message("Please pay the amount for your order here - https://rzp.io/i/H8Riicpas \nThis link will be valid upto 6 hours.")
                 
                 dispatcher.utter_message(
                 f"Thanks for placing the order.\nSuccessfully created transaction with Transaction ID: {str(random.randint(10000,999999999999))}\nTransaction Response Code: 1\nMessage Code: 1\nDescription: This transaction has been approved.\nWe have sent your e-receipt on your mail.")
@@ -1263,14 +1237,14 @@ class ActionJobForm(Action):
                 "pandeyaryamaan@gmail.com",
                 mail_body
             )
-        dispatcher.utter_message("Thank you so much for applying to ABInBev! Please know that your application has been received and a member of our team will be reviewing it soon.\nIf your application seems like a good fit for the position, then a member of our team will soon contact you.")
+        dispatcher.utter_message("Thank you so much for applying to Walmart! Please know that your application has been received and a member of our team will be reviewing it soon.\nIf your application seems like a good fit for the position, then a member of our team will soon contact you.")
 
         return [AllSlotsReset()]
 
 
 
 def SendEmail1947(toaddr,message):
-    fromaddr = "hrab9016@gmail.com"
+    fromaddr = "aryamaan26012000@gmail.com"
     msg = MIMEMultipart()
 
     msg['From'] = fromaddr
@@ -1342,6 +1316,25 @@ class ActionTrack(Action):
         a=fake.address()
         days = random.randint(4, 10)
         dispatcher.utter_message(text=f"Your order with order id:{order_id} is ready to dispatch from {a} "+ "and will be delivered to your address which is " +location.address + f" within {days} days")
+
+        return [AllSlotsReset()]
+
+
+class ActionRecommend(Action):
+    
+    def name(self) -> Text:
+        return "action_recommend"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        #x = tracker.get_slot("order")
+        x=3
+        y=requests.get(f"https://productrecommenderaaa.herokuapp.com/api/v1.0/recommendations/{x}")
+        for prod in y.json()['data']:
+            dispatcher.utter_message(f"{round(prod['frequency'] * 100, 1)}% of users also searched about {prod['name']}")
+
 
         return [AllSlotsReset()]
 
